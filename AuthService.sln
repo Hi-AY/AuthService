@@ -13,6 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Domain", "src\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Infrastructure", "src\AuthService.Infrastructure\AuthService.Infrastructure.csproj", "{8CD924FF-9083-45A1-92CE-95872F3818F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{A1D17E0D-4FD0-46F3-80C3-F8501E1B305D}"
+	ProjectSection(SolutionItems) = preProject
+		ci.yml = ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,5 +87,7 @@ Global
 		{B3FBF614-B847-45F6-B6D4-2EA2DFD327A4} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{6B33265E-DF72-41A5-B3B8-6E58DCAEA2A5} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{8CD924FF-9083-45A1-92CE-95872F3818F1} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{A1D17E0D-4FD0-46F3-80C3-F8501E1B305D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 EndGlobal
