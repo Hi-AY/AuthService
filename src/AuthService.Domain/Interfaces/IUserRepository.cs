@@ -9,4 +9,8 @@ public interface IUserRepository
     Task AddAsync(User user);
 
     Task SaveChangesAsync();
+
+    Task AddRefreshTokenAsync(RefreshToken refreshToken);
+
+    Task<RefreshToken?> GetRefreshTokenAsync(string token);
 }

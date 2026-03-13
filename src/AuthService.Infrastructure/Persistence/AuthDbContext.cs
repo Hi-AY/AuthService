@@ -16,6 +16,8 @@ public class AuthDbContext : DbContext
 
     public DbSet<UserRole> UserRoles => Set<UserRole>();
 
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -32,5 +34,10 @@ public class AuthDbContext : DbContext
             .HasOne(x => x.Role)
             .WithMany(x => x.UserRoles)
             .HasForeignKey(x => x.RoleId);
+
+        builder.Entity<RefreshToken>()
+            .HasOne(r => r.User)
+            .WithMany(u => u.RefreshTokens)
+            .HasForeignKey(r => r.UserId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AuthService.Application.Commands.LoginUser;
+using AuthService.Application.Commands.RefreshAuthToken;
 using AuthService.Application.Commands.RegisterUser;
 using AuthService.Application.DTOs.Auth;
 
@@ -30,11 +31,16 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {
-        var token = await _mediator.Send(new LoginUserCommand(request));
+        var response = await _mediator.Send(new LoginUserCommand(request));
 
-        return Ok(new
-        {
-            accessToken = token
-        });
+        return Ok(response);
+    }
+
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh(RefreshTokenRequest request)
+    {
+        var response = await _mediator.Send(new RefreshTokenCommand(request));
+
+        return Ok(response);
     }
 }

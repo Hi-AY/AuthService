@@ -1,7 +1,6 @@
 ﻿using AuthService.Domain.Entities;
 using AuthService.Domain.Interfaces;
 using AuthService.Infrastructure.Persistence;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthService.Infrastructure.Repositories;
@@ -18,6 +17,7 @@ public class UserRepository : IUserRepository
     public async Task<User?> GetByEmailAsync(string email)
     {
         return await _context.Users
+            .Include(u => u.RefreshTokens)
             .FirstOrDefaultAsync(x => x.Email == email);
     }
 
@@ -29,5 +29,17 @@ public class UserRepository : IUserRepository
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();
+    }
+
+    public async Task AddRefreshTokenAsync(RefreshToken refreshToken)
+    {
+        await _context.RefreshTokens.AddAsync(refreshToken);
+    }
+
+    public async Task<RefreshToken?> GetRefreshTokenAsync(string token)
+    {
+        return await _context.RefreshTokens
+            .Include(x => x.User)
+            .FirstOrDefaultAsync(x => x.Token == token);
     }
 }

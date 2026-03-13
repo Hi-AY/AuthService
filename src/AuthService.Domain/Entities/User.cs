@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AuthService.Domain.Entities;
 
@@ -15,4 +16,6 @@ public class User
     public DateTime CreatedAt { get; set; }
 
     public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+
+    public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }
