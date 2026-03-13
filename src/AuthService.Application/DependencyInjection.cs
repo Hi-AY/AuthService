@@ -1,10 +1,12 @@
-﻿using FluentValidation;
+﻿using System.Reflection;
+
+using AuthService.Application.Behaviors;
+
+using FluentValidation;
 
 using MediatR;
 
 using Microsoft.Extensions.DependencyInjection;
-
-using System.Reflection;
 
 namespace AuthService.Application;
 
@@ -16,6 +18,7 @@ public static class DependencyInjection
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         return services;
     }

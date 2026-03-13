@@ -23,7 +23,7 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, G
         var existingUser = await _userRepository.GetByEmailAsync(request.Request.Email);
 
         if (existingUser != null)
-            throw new Exception("User already exists");
+            throw new ApplicationException("User already exists");
 
         var user = new User
         {

@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AuthService.Application.Interfaces;
+using AuthService.Domain.Interfaces;
+using AuthService.Infrastructure.Persistence;
+using AuthService.Infrastructure.Repositories;
+using AuthService.Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AuthService.Infrastructure.Persistence;
-using AuthService.Domain.Interfaces;
-using AuthService.Application.Interfaces;
-using AuthService.Infrastructure.Services;
-using AuthService.Infrastructure.Repositories;
 
 namespace AuthService.Infrastructure;
 
@@ -18,8 +18,10 @@ public static class DependencyInjection
         services.AddDbContext<AuthDbContext>(options =>
             options.UseSqlServer(
                 configuration.GetConnectionString("DefaultConnection")));
+
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
+        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
         return services;
     }
